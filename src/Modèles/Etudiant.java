@@ -1,4 +1,4 @@
-package labo5init;
+package Modèles;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,10 @@
-package labo5init;
+package Vues;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -11,7 +13,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class PanelConsultationEtudiant extends JPanel {
+import Modèles.Cours;
+import Modèles.Etudiant;
+import Modèles.EtudiantManager;
+
+public class PanelConsultationEtudiant extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private Etudiant etudiant;
 
@@ -21,6 +27,7 @@ public class PanelConsultationEtudiant extends JPanel {
 	private final JLabel lblProgram;
 	private final JList cours;
 	private JScrollPane jscrollPane; 
+	private EtudiantManager monModele;
 	
 	public PanelConsultationEtudiant() {
 		lblPseudo = new JLabel();
@@ -91,5 +98,17 @@ public class PanelConsultationEtudiant extends JPanel {
 			}			
 			cours.setModel(model);
 		}
+	}
+
+	public void setModele(EtudiantManager monModele){
+		this.monModele = monModele;
+	}
+	
+	/**
+	 * On ré-actualise toutes les données (MVC)
+	 */
+	@Override
+	public void update(Observable o, Object arg) {
+		revalidateData();
 	}	
 }

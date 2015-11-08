@@ -1,4 +1,4 @@
-package labo5init;
+package Vues;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -26,7 +28,12 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-public class PanelModificationEtudiant extends JPanel {
+import Modèles.Cours;
+import Modèles.Etudiant;
+import Modèles.EtudiantManager;
+import Modèles.Programme;
+
+public class PanelModificationEtudiant extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 
 	private Etudiant etudiant;
@@ -55,7 +62,7 @@ public class PanelModificationEtudiant extends JPanel {
 	private JLabel prenomLabel;
 	private JLabel nomLabel;
 	private JPanel nomPrenomPanel;
-	
+	private EtudiantManager monModele;
 	
 	public PanelModificationEtudiant() {
 		// TODO ajouter du code pour construire la vue
@@ -175,7 +182,7 @@ public class PanelModificationEtudiant extends JPanel {
 		programmeComboBox = new JComboBox();
 		
 		// Inscription des programmes existants en informatique
-		for (Programme prog : EtudiantManager.getInstance().getProgrammes()) {
+		for (Programme prog : monModele.getProgrammes()) {
 			programmeComboBox.addItem(prog.getName());
 		}
 
@@ -201,7 +208,7 @@ public class PanelModificationEtudiant extends JPanel {
 
 		coursChckbx = new HashMap<Cours, JCheckBox>();
 
-		ArrayList<Cours> allCours = EtudiantManager.getInstance().getCours();
+		ArrayList<Cours> allCours = monModele.getCours();
 		int demi = (allCours.size() / 2) + 1;
 		
 		
@@ -292,6 +299,15 @@ public class PanelModificationEtudiant extends JPanel {
 	
 	public void setPanelTabbed(PanelTabbed panelTabbed) {
 		this.panelTabbed = panelTabbed;		
+	}
+	
+	public void setModele(EtudiantManager monModele){
+		this.monModele = monModele;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		//Pas d'affichage de données, on update donc rien		
 	}	
 
 }

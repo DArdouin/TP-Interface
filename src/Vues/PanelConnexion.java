@@ -1,4 +1,4 @@
-package labo5init;
+package Vues;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,7 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class PanelConnexion extends JPanel {
+import Controlleurs.ControlleurConnexion;
+import Modèles.EtudiantManager;
+
+public class PanelConnexion extends JPanel implements Observer{
 	private static final long serialVersionUID = 1L;
 	private static final int TAILLE_DES_TEXTFIELD = 10;
 	private JLabel titleLabel;
@@ -25,14 +30,14 @@ public class PanelConnexion extends JPanel {
 	private JPasswordField passwordField;
 	private JButton cancelButton;
 	private JButton connectionButton;
-	private MainFrame mainFrame;
+	private ControlleurConnexion monControlleur;
+	private EtudiantManager monModele;
 
 	/**
 	 * Create the panel.
 	 */
-	public PanelConnexion(MainFrame newMainFrame) {
+	public PanelConnexion() {
 		super(new BorderLayout());
-		this.mainFrame = newMainFrame;
 		
 		//Titre de l'interface
 		titleLabel= new JLabel("Connexion");
@@ -82,21 +87,13 @@ public class PanelConnexion extends JPanel {
 		panelActions.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		cancelButton = new JButton("Annuler");	
-		cancelButton.setFont(cancelButton.getFont().deriveFont(Font.PLAIN));
+		cancelButton.setFont(cancelButton.getFont().deriveFont(Font.PLAIN));		
+		cancelButton.addActionListener(monControlleur);
+		cancelButton.setActionCommand("Cancel");
 		
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				quit();
-			}
-		});
-		
-		connectionButton = new JButton("Connexion");
-		
-		connectionButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				connect();
-			}
-		});
+		connectionButton = new JButton("Connexion");		
+		connectionButton.addActionListener(monControlleur);
+		connectionButton.setActionCommand("Connexion");
 		
 		panelActions.add(cancelButton);
 		panelActions.add(connectionButton);
@@ -104,23 +101,24 @@ public class PanelConnexion extends JPanel {
 		this.add(panelActions, BorderLayout.SOUTH);
 	}
 	
-	//Méthode permettant la connexion avec les informations données par l'utilisateur (pseudonyme et mot de passe)
-	public void connect() {
-		boolean isConnected = EtudiantManager.getInstance().connexion(pseudonymTextField.getText(), new String(passwordField.getPassword()));
-		if(isConnected){
-			mainFrame.setEtudiant(EtudiantManager.getInstance().getConnectedEtudiant());
-			mainFrame.showCurrentPanel("PanelTabbed");										
-		}else{
-			JOptionPane.showMessageDialog(mainFrame,
-				    "Le nom de l'utilisateur ou le mot de passe est invalide.",
-				    "Erreur de connexion",
-				    JOptionPane.ERROR_MESSAGE);
-		}
+	public String getPseudo(){
+		return pseudonymTextField.getText();
 	}
 	
-	//Méthode permettant de quitter l'application
-	public void quit() {
-		mainFrame.dispose();
+	public String getPassword(){
+		return new String(passwordField.getPassword());
 	}
-
+	
+	public void setControlleur(ControlleurConnexion c){
+		this.monControlleur = c;
+	}
+	
+	public void setModele(EtudiantManager m){
+		this.monModele = m;
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		//Pas d'affichage de données, on update donc rien
+	}
 }

@@ -1,18 +1,17 @@
-package labo5init;
+package Modèles;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
 
-import labo5init.Etudiant;
-
-public class EtudiantManager {
-
-	private static EtudiantManager MANAGER = new EtudiantManager();
+public class EtudiantManager extends Observable{
+	/*private static EtudiantManager MANAGER = new EtudiantManager();
 
 	public static EtudiantManager getInstance() {
 		return MANAGER;
-	}
+	}*/
 
 	private Etudiant connected;
 
@@ -20,7 +19,7 @@ public class EtudiantManager {
 	private final HashMap<String, Etudiant> etudiants;
 	private final ArrayList<Programme> programmes;
 
-	private EtudiantManager() {
+	public EtudiantManager() {
 		connected = null;
 
 		cours = new ArrayList<Cours>();
@@ -135,5 +134,10 @@ public class EtudiantManager {
 
 	//Methode pour mettre a jour les donnees dun etudiant
 	public void updateStudent(Etudiant etudiant) {
+		
+		
+		//On indique que les données on changées, et on l'indique aux observateurs
+		setChanged();
+		notifyObservers();
 	}
 }

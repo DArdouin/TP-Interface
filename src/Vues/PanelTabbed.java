@@ -1,9 +1,11 @@
-package labo5init;
+package Vues;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTabbedPane;
+
+import Modèles.Etudiant;
 
 public class PanelTabbed extends JTabbedPane implements MouseListener {
 	private static final long serialVersionUID = 1L;
@@ -16,15 +18,18 @@ public class PanelTabbed extends JTabbedPane implements MouseListener {
 	 * et d'édition des étudiants
 	 */
 	public PanelTabbed() {
-		
-		//Ajout des panels de consultation et de modification des données relatives à l'étudiant connecté
-		consult = new PanelConsultationEtudiant();
+	}
+	
+	public void addConsultation(PanelConsultationEtudiant p){
+		consult = p;
 		this.addTab("Consulter", null, consult, null);
-		
+	}
+
+	public void addModificationEtudiants(PanelModificationEtudiant p){
 		edit = new PanelModificationEtudiant();
 		addTab("Editer", null, edit, null);
 	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
