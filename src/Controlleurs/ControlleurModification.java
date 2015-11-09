@@ -56,7 +56,7 @@ public class ControlleurModification implements ActionListener{
 		}
 		connectedEtudiant.setCours(cours);
 		
-		mainFrame.setEtudiant(connectedEtudiant);
+		monModele.updateStudent(connectedEtudiant);
 		
 	}
 

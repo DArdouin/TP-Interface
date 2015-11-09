@@ -135,7 +135,7 @@ public class EtudiantManager extends Observable{
 	//Methode pour mettre a jour les donnees dun etudiant
 	public void updateStudent(Etudiant etudiant) {
 		
-		
+		connected = etudiant;
 		//On indique que les donn�es on chang�es, et on l'indique aux observateurs
 		setChanged();
 		notifyObservers();
