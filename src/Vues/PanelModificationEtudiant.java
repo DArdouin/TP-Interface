@@ -28,6 +28,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import Controlleurs.ControlleurModification;
 import Modèles.Cours;
 import Modèles.Etudiant;
 import Modèles.EtudiantManager;
@@ -63,9 +64,11 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 	private JLabel nomLabel;
 	private JPanel nomPrenomPanel;
 	private EtudiantManager monModele;
+	private ControlleurModification monControlleur;
 	
-	public PanelModificationEtudiant() {
-		// TODO ajouter du code pour construire la vue
+	public PanelModificationEtudiant(EtudiantManager m, ControlleurModification c) {
+		setModele(m);
+		setControlleur(c);
 		
 		//Gestion de la présentation du panel concernant la modification des données relatives à l'étudiant connecté
 		setLayout(new GridBagLayout());
@@ -180,11 +183,6 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		lblProgramme = new JLabel("Programme:");
 		panelProgramme.add(lblProgramme);
 		programmeComboBox = new JComboBox();
-		
-		// Inscription des programmes existants en informatique
-		for (Programme prog : monModele.getProgrammes()) {
-			programmeComboBox.addItem(prog.getName());
-		}
 
 		panelProgramme.add(programmeComboBox);
 		GridBagConstraints gbc_panelProgramme = new GridBagConstraints();
@@ -241,18 +239,12 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		panelConnexion.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		cancelButton = new JButton("Annuler");
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cancel();
-			}	
-		});
+		cancelButton.addActionListener(monControlleur);
+		cancelButton.setActionCommand("Cancel");
 		
 		saveButton = new JButton("Sauvegarder");	
-		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				save();
-			}
-		});
+		saveButton.addActionListener(monControlleur);
+		saveButton.setActionCommand("Sauvegarder");
 		
 		panelConnexion.add(cancelButton);
 		panelConnexion.add(saveButton);
@@ -267,35 +259,15 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		this.add(panelConnexion,gbc_panelCommand);
 	}
 
-	public void setEtudiant(Etudiant connectedEtudiant) {
-		if(connectedEtudiant != null ){
-			pseudoTextField.setText(connectedEtudiant.getPseudo());
-			prenomTextField.setText(connectedEtudiant.getPrenom());
-			nomTextField.setText(connectedEtudiant.getNom());
-			
-			womanRadioButton.setSelected(!connectedEtudiant.getEstHomme());
-			manRadioButton.setSelected(connectedEtudiant.getEstHomme());
-			
-			programmeComboBox.setSelectedItem(connectedEtudiant.getProgramme());
+	private void setControlleur(ControlleurModification c) {
+		this.monControlleur = c;		
+	}
 
-			// Inscription des cours existants de l'étudiant
-			for (Entry<Cours, JCheckBox> chck : coursChckbx.entrySet()) {				
-				chck.getValue().setSelected(connectedEtudiant.getCours().contains(chck.getKey()));
-			}
-		}
-		
+	public void setEtudiant(Etudiant connectedEtudiant) {
+		this.etudiant = connectedEtudiant;
+		miseAJour();
 	}
-	public void cancel() {
-		// Do something
-	}
-	
-	public void save(){
-		// Sauvegarde des informations de l'étudiant
-		JOptionPane.showMessageDialog(null,
-			    "La sauvegarde des données n'a pas été implémentée.",
-			    "Erreur de sauvegarde",
-			    JOptionPane.ERROR_MESSAGE);
-	}
+
 	
 	public void setPanelTabbed(PanelTabbed panelTabbed) {
 		this.panelTabbed = panelTabbed;		
@@ -305,6 +277,24 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		this.monModele = monModele;
 	}
 
+	public void miseAJour(){
+		if(etudiant != null ){			
+			pseudoTextField.setText(etudiant.getPseudo());
+			prenomTextField.setText(etudiant.getPrenom());
+			nomTextField.setText(etudiant.getNom());
+			
+			womanRadioButton.setSelected(!etudiant.getEstHomme());
+			manRadioButton.setSelected(etudiant.getEstHomme());
+			
+			programmeComboBox.setSelectedItem(etudiant.getProgramme());
+
+			// Inscription des cours existants de l'étudiant
+			for (Entry<Cours, JCheckBox> chck : coursChckbx.entrySet()) {				
+				chck.getValue().setSelected(etudiant.getCours().contains(chck.getKey()));
+			}
+		}
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		//Pas d'affichage de données, on update donc rien		

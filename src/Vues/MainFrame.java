@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Controlleurs.ControlleurConnexion;
+import Controlleurs.ControlleurModification;
 import Modèles.Etudiant;
 import Modèles.EtudiantManager;
 
@@ -20,6 +21,7 @@ public class MainFrame extends JFrame {
 	EtudiantManager monModele;
 	PanelConnexion vueConnexion;
 	ControlleurConnexion controlleurConnexion;
+	ControlleurModification controlleurModification;
 	PanelConsultationEtudiant vueEtudiants;
 	PanelModificationEtudiant vueModificationEtudiants;
 	
@@ -35,24 +37,26 @@ public class MainFrame extends JFrame {
 			//On définit le modèle
 		monModele = new EtudiantManager();
 		
-			//On définit les vues
-		vueConnexion = new PanelConnexion();
-		vueEtudiants = new PanelConsultationEtudiant();
-		vueModificationEtudiants = new PanelModificationEtudiant();
-		
 			//On définit les controlleurs
-		controlleurConnexion =  new ControlleurConnexion();
+		controlleurConnexion =  new ControlleurConnexion(this);
+		controlleurModification = new ControlleurModification(this);
+		
+			//On définit les vues
+			//On abonne les vues aux modèles et aux controlleurs	
+		vueConnexion = new PanelConnexion(monModele,controlleurConnexion);
+		vueEtudiants = new PanelConsultationEtudiant(monModele);
+		vueModificationEtudiants = new PanelModificationEtudiant(monModele,controlleurModification);
 		
 			//On indique les vues & les modèles au controlleur
 		controlleurConnexion.setModele(monModele);
 		controlleurConnexion.setVueConnexion(vueConnexion);
-		
-			//On abonne les vues aux modèles et aux controlleurs
-		vueConnexion.setControlleur(controlleurConnexion);
-		vueConnexion.setModele(monModele);
+		controlleurModification.setModele(monModele);
+		controlleurModification.setVueModification(vueModificationEtudiants);
 		
 			//On ajoute les observer au modèle		
 		monModele.addObserver(vueConnexion);
+		monModele.addObserver(vueEtudiants);
+		monModele.addObserver(vueModificationEtudiants);
 		
 		//On ajoute les vues à la mainFrame
 		cardPanelTabbed.addConsultation(vueEtudiants);

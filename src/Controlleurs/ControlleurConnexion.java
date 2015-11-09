@@ -16,10 +16,9 @@ public class ControlleurConnexion implements ActionListener {
 	private MainFrame mainFrame;
 	private EtudiantManager monModele;
 	PanelConnexion vueConnexion;
-	PanelConsultationEtudiant vueEtudiants;
-	PanelModificationEtudiant vueModificationEtudiants;
 	
-	public ControlleurConnexion(){
+	public ControlleurConnexion(MainFrame m){
+		this.mainFrame = m;
 	}
 	
 	//Méthode permettant de quitter l'application
@@ -49,16 +48,8 @@ public class ControlleurConnexion implements ActionListener {
 		this.vueConnexion = v;
 	}
 	
-	public void setVueEtudiant(PanelConsultationEtudiant v){
-		this.vueEtudiants = v;
-	}
-	
-	public void setVueModificationEtudiant(PanelModificationEtudiant v){
-		this.vueModificationEtudiants = v;
-	}
-	
 	@Override
-	public void actionPerformed(ActionEvent e) {		
+	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Cancel")) quit();
 		if(e.getActionCommand().equals("Connexion")) connect();
 	}

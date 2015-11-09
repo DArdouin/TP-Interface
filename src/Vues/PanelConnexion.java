@@ -36,8 +36,11 @@ public class PanelConnexion extends JPanel implements Observer{
 	/**
 	 * Create the panel.
 	 */
-	public PanelConnexion() {
+	public PanelConnexion(EtudiantManager m, ControlleurConnexion c) {
 		super(new BorderLayout());
+		
+		setModele(m);
+		setControlleur(c);
 		
 		//Titre de l'interface
 		titleLabel= new JLabel("Connexion");

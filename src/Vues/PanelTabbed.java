@@ -26,7 +26,7 @@ public class PanelTabbed extends JTabbedPane implements MouseListener {
 	}
 
 	public void addModificationEtudiants(PanelModificationEtudiant p){
-		edit = new PanelModificationEtudiant();
+		edit = p;
 		addTab("Editer", null, edit, null);
 	}
 	

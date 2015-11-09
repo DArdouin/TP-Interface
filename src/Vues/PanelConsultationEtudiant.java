@@ -29,7 +29,8 @@ public class PanelConsultationEtudiant extends JPanel implements Observer {
 	private JScrollPane jscrollPane; 
 	private EtudiantManager monModele;
 	
-	public PanelConsultationEtudiant() {
+	public PanelConsultationEtudiant(EtudiantManager m) {
+		setModele(m);
 		lblPseudo = new JLabel();
 		lblNomComplet = new JLabel();
 		lblSexe = new JLabel();
