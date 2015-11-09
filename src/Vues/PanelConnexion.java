@@ -18,7 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controlleurs.ControlleurConnexion;
-import Modèles.EtudiantManager;
+import Modeles.EtudiantManager;
 
 public class PanelConnexion extends JPanel implements Observer{
 	private static final long serialVersionUID = 1L;
@@ -122,6 +122,6 @@ public class PanelConnexion extends JPanel implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		//Pas d'affichage de données, on update donc rien
+		//Pas d'affichage de donnï¿½es, on update donc rien
 	}
 }

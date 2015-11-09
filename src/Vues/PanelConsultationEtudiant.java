@@ -13,9 +13,10 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Modèles.Cours;
-import Modèles.Etudiant;
-import Modèles.EtudiantManager;
+
+import Modeles.Cours;
+import Modeles.Etudiant;
+import Modeles.EtudiantManager;
 
 public class PanelConsultationEtudiant extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
@@ -54,7 +55,7 @@ public class PanelConsultationEtudiant extends JPanel implements Observer {
 		panelGrid.add(createLabelName("Sexe: "));
 		panelGrid.add(lblSexe);
 
-		panelGrid.add(createLabelName("Programme d'étude: "));
+		panelGrid.add(createLabelName("Programme d'ï¿½tude: "));
 		panelGrid.add(lblProgram);
 
 		this.add(panelGrid);
@@ -106,7 +107,7 @@ public class PanelConsultationEtudiant extends JPanel implements Observer {
 	}
 	
 	/**
-	 * On ré-actualise toutes les données (MVC)
+	 * On rï¿½-actualise toutes les donnï¿½es (MVC)
 	 */
 	@Override
 	public void update(Observable o, Object arg) {

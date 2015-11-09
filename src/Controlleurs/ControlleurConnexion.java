@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Modèles.EtudiantManager;
+import Modeles.EtudiantManager;
 import Vues.MainFrame;
 import Vues.PanelConnexion;
 import Vues.PanelConsultationEtudiant;
@@ -21,12 +21,12 @@ public class ControlleurConnexion implements ActionListener {
 		this.mainFrame = m;
 	}
 	
-	//Méthode permettant de quitter l'application
+	//Mï¿½thode permettant de quitter l'application
 	public void quit() {
 		mainFrame.dispose();
 	}
 	
-	//Méthode permettant la connexion avec les informations données par l'utilisateur (pseudonyme et mot de passe)
+	//Mï¿½thode permettant la connexion avec les informations donnï¿½es par l'utilisateur (pseudonyme et mot de passe)
 	public void connect() {
 		boolean isConnected = monModele.connexion(vueConnexion.getPseudo(), vueConnexion.getPassword());
 		if(isConnected){

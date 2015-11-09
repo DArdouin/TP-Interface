@@ -5,7 +5,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTabbedPane;
 
-import Modèles.Etudiant;
+
+import Modeles.Etudiant;
 
 public class PanelTabbed extends JTabbedPane implements MouseListener {
 	private static final long serialVersionUID = 1L;
@@ -15,7 +16,7 @@ public class PanelTabbed extends JTabbedPane implements MouseListener {
 	
 	/**
 	 * Interface generale qui contient les onglets de consultation 
-	 * et d'édition des étudiants
+	 * et d'ï¿½dition des ï¿½tudiants
 	 */
 	public PanelTabbed() {
 	}

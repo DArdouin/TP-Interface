@@ -1,4 +1,4 @@
-package Modèles;
+package Modeles;
 
 
 import java.util.ArrayList;
@@ -30,20 +30,20 @@ public class EtudiantManager extends Observable{
 	}
 
 	private void loadData() {
-		Cours ift209 = new Cours("Programmation système", "IFT 209");
-		Cours ift215 = new Cours("Interfaces et multimédia", "IFT 215");
-		Cours ift232 = new Cours("Méthodes de conception orientées objet","IFT 232");
+		Cours ift209 = new Cours("Programmation systï¿½me", "IFT 209");
+		Cours ift215 = new Cours("Interfaces et multimï¿½dia", "IFT 215");
+		Cours ift232 = new Cours("Mï¿½thodes de conception orientï¿½es objet","IFT 232");
 		Cours ift287 = new Cours("Exploitation de BD relationnelles et OO","IFT 287");
 
 		Cours ift313 = new Cours("Introduction aux langages formels", "IFT 313");
-		Cours ift320 = new Cours("Systèmes d'exploitation", "IFT 320");
-		Cours ift339 = new Cours("Structures de données", "IFT 339");
+		Cours ift320 = new Cours("Systï¿½mes d'exploitation", "IFT 320");
+		Cours ift339 = new Cours("Structures de donnï¿½es", "IFT 339");
 		Cours ift359 = new Cours("Programmation fonctionnelle", "IFT 359");
 
-		Cours mat193 = new Cours("Algèbre linéaire", "MAT 193");
+		Cours mat193 = new Cours("Algï¿½bre linï¿½aire", "MAT 193");
 
 		Programme informatique = new Programme("Bsc.Informatique");
-		Programme imagerie = new Programme("Bsc.Sciences de l’image");
+		Programme imagerie = new Programme("Bsc.Sciences de lï¿½image");
 		Programme gestion = new Programme("Bsc.Informatique de gestion");
 
 		cours.add(ift209);
@@ -114,7 +114,7 @@ public class EtudiantManager extends Observable{
 	 * 
 	 * @param nomUtilisateur
 	 * @param motDePasse
-	 * @return Vrai si l'utilisateur est connecté
+	 * @return Vrai si l'utilisateur est connectï¿½
 	 */
 	public boolean connexion(String pseudo, String motDePasse) {
 		Etudiant etudiant = etudiants.get(pseudo);
@@ -136,7 +136,7 @@ public class EtudiantManager extends Observable{
 	public void updateStudent(Etudiant etudiant) {
 		
 		
-		//On indique que les données on changées, et on l'indique aux observateurs
+		//On indique que les donnï¿½es on changï¿½es, et on l'indique aux observateurs
 		setChanged();
 		notifyObservers();
 	}

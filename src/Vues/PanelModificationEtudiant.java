@@ -29,10 +29,14 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import Controlleurs.ControlleurModification;
-import Modèles.Cours;
-import Modèles.Etudiant;
-import Modèles.EtudiantManager;
-import Modèles.Programme;
+
+import Modeles.Cours;
+import Modeles.Etudiant;
+import Modeles.EtudiantManager;
+import Modeles.Programme;
+
+
+
 
 public class PanelModificationEtudiant extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
@@ -70,7 +74,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		setModele(m);
 		setControlleur(c);
 		
-		//Gestion de la présentation du panel concernant la modification des données relatives à l'étudiant connecté
+		//Gestion de la prï¿½sentation du panel concernant la modification des donnï¿½es relatives ï¿½ l'ï¿½tudiant connectï¿½
 		setLayout(new GridBagLayout());
 
 		panelIdentification = new JPanel();
@@ -78,7 +82,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		flowLayout_1.setAlignment(FlowLayout.LEFT);
 		panelIdentification.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Identification", TitledBorder.LEADING, TitledBorder.TOP, null, null));		
 		
-		//Ajout des composants graphiques concernant le pseudonyme et le mot de passe de l'étudiant connecté
+		//Ajout des composants graphiques concernant le pseudonyme et le mot de passe de l'ï¿½tudiant connectï¿½
 		pseudoLabel = new JLabel("Pseudo:");
 		panelIdentification.add(pseudoLabel);
 
@@ -94,7 +98,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		passwordField.setColumns(10);
 		panelIdentification.add(passwordField);
 		
-		//Gestion de la présentation du panel concernant  le pseudonyme et le mot de passe de l'étudiant connecté
+		//Gestion de la prï¿½sentation du panel concernant  le pseudonyme et le mot de passe de l'ï¿½tudiant connectï¿½
 		GridBagConstraints gbc_panelIdentification = new GridBagConstraints();
 		gbc_panelIdentification.fill = GridBagConstraints.BOTH;
 		gbc_panelIdentification.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -105,16 +109,16 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		this.add(panelIdentification, gbc_panelIdentification);
 		
 		
-		//Implémentation d'une bordure du panel englobant les composants graphiques concernant le nom, prénom et le sexe de l'étudiant connecté
+		//Implï¿½mentation d'une bordure du panel englobant les composants graphiques concernant le nom, prï¿½nom et le sexe de l'ï¿½tudiant connectï¿½
 		informationPanel = new JPanel();
 		informationPanel.setLayout(new GridBagLayout());
 		
 		informationPanel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Information", TitledBorder.LEADING,TitledBorder.TOP, null, null));
 		
-		//Ajout des composants graphiques concernant le nom, prénom de l'étudiant connecté
+		//Ajout des composants graphiques concernant le nom, prï¿½nom de l'ï¿½tudiant connectï¿½
 		nomPrenomPanel = new JPanel();
 		
-		prenomLabel = new JLabel("Prénom: ");
+		prenomLabel = new JLabel("Prï¿½nom: ");
 		nomPrenomPanel.add(prenomLabel);
 		prenomTextField = new JTextField(10);
 		nomPrenomPanel.add(prenomTextField);
@@ -124,7 +128,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		nomTextField = new JTextField(10);
 		nomPrenomPanel.add(nomTextField);
 		
-		//Gestion de la présentation des composants graphiques concernant le nom, prénom de l'étudiant connecté
+		//Gestion de la prï¿½sentation des composants graphiques concernant le nom, prï¿½nom de l'ï¿½tudiant connectï¿½
 		GridBagConstraints gbc_panelNom = new GridBagConstraints();
 		gbc_panelNom.anchor = GridBagConstraints.FIRST_LINE_START;
 		gbc_panelNom.gridx = 0;
@@ -133,7 +137,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		gbc_panelNom.weighty = 1;
 		informationPanel.add(nomPrenomPanel, gbc_panelNom);
 	
-		//Ajout des composants graphiques concernant le sexe de l'étudiant connecté
+		//Ajout des composants graphiques concernant le sexe de l'ï¿½tudiant connectï¿½
 		panelSexe = new JPanel();
 		FlowLayout flowLayout_panelSexe = (FlowLayout) panelSexe.getLayout();
 		flowLayout_panelSexe.setAlignment(FlowLayout.LEFT);
@@ -147,7 +151,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		groupSexe.add(manRadioButton);
 		groupSexe.add(womanRadioButton);
 		
-		//Gestion de la présentation des composants graphiques concernant le sexe de l'étudiant connecté
+		//Gestion de la prï¿½sentation des composants graphiques concernant le sexe de l'ï¿½tudiant connectï¿½
 		GridBagConstraints gbc_panelSexe = new GridBagConstraints();
 		gbc_panelSexe.fill = GridBagConstraints.BOTH;
 		gbc_panelSexe.gridx = 0;
@@ -157,7 +161,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		informationPanel.add(panelSexe, gbc_panelSexe);
 
 		
-		//Gestion de la présentation des panels concernant le nom,prénom et le sexe de l'étudiant connecté
+		//Gestion de la prï¿½sentation des panels concernant le nom,prï¿½nom et le sexe de l'ï¿½tudiant connectï¿½
 		GridBagConstraints gbc_nomPrenomSexePanel = new GridBagConstraints();
 		gbc_nomPrenomSexePanel.fill = GridBagConstraints.BOTH;
 		gbc_nomPrenomSexePanel.gridx = 0;
@@ -166,9 +170,9 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		gbc_nomPrenomSexePanel.weighty = 1;
 		this.add(informationPanel, gbc_nomPrenomSexePanel);
 		
-		//Implémentation d'une bordure du panel englobant les panels concernant le programme d'étude et les cours de l'étudiant connecté
+		//Implï¿½mentation d'une bordure du panel englobant les panels concernant le programme d'ï¿½tude et les cours de l'ï¿½tudiant connectï¿½
 		panelEtude = new JPanel();		
-		panelEtude.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "Étude", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelEtude.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "ï¿½tude", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelEtude.setLayout(new GridBagLayout());
 		GridBagConstraints gbc_panelEtude = new GridBagConstraints();
 		gbc_panelEtude.fill = GridBagConstraints.BOTH;		
@@ -176,13 +180,18 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		gbc_panelEtude.gridy = 2;
 		this.add(panelEtude, gbc_panelEtude);	
 		
-		//Ajout des composants graphiques concernant le programme de l'étudiant connecté
+		//Ajout des composants graphiques concernant le programme de l'ï¿½tudiant connectï¿½
 		panelProgramme = new JPanel();
 		FlowLayout fl_panelProgramme = (FlowLayout) panelProgramme.getLayout();
 		fl_panelProgramme.setAlignment(FlowLayout.LEFT);
 		lblProgramme = new JLabel("Programme:");
 		panelProgramme.add(lblProgramme);
 		programmeComboBox = new JComboBox();
+		
+		// Inscription des programmes existants en informatique
+		for (Programme prog : monModele.getProgrammes()) {
+			programmeComboBox.addItem(prog.getName());
+		}
 
 		panelProgramme.add(programmeComboBox);
 		GridBagConstraints gbc_panelProgramme = new GridBagConstraints();
@@ -194,7 +203,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		gbc_panelProgramme.weighty = 1;
 		panelEtude.add(panelProgramme, gbc_panelProgramme);
 		
-		//Ajout des composants graphiques concernant les cours de l'étudiant connecté
+		//Ajout des composants graphiques concernant les cours de l'ï¿½tudiant connectï¿½
 		panelCours = new JPanel(new BorderLayout());
 		panelCours.setBorder(new TitledBorder(null, "Cours", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
@@ -227,14 +236,14 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 			panelCours2.add(chckbxCour);
 		}
 		
-		//Gestion de la présentation du panel concernant les cours de l'étudiant connecté à l'intérieur du panel parent
+		//Gestion de la prï¿½sentation du panel concernant les cours de l'ï¿½tudiant connectï¿½ ï¿½ l'intï¿½rieur du panel parent
 		GridBagConstraints gbc_panelCours = new GridBagConstraints();
 		gbc_panelCours.fill = GridBagConstraints.BOTH;
 		gbc_panelCours.gridx = 0;
 		gbc_panelCours.gridy = 1;
 		panelEtude.add(panelCours, gbc_panelCours);
 
-		//Implémentation du panel concernant l'annulation ou la sauvegarde de la modification des données de l'étudiant connecté
+		//Implï¿½mentation du panel concernant l'annulation ou la sauvegarde de la modification des donnï¿½es de l'ï¿½tudiant connectï¿½
 		panelConnexion = new JPanel();
 		panelConnexion.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
@@ -259,14 +268,17 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 		this.add(panelConnexion,gbc_panelCommand);
 	}
 
+
 	private void setControlleur(ControlleurModification c) {
 		this.monControlleur = c;		
 	}
 
 	public void setEtudiant(Etudiant connectedEtudiant) {
 		this.etudiant = connectedEtudiant;
+		monControlleur.setEtudiant(connectedEtudiant);
 		miseAJour();
 	}
+
 
 	
 	public void setPanelTabbed(PanelTabbed panelTabbed) {
@@ -288,7 +300,7 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 			
 			programmeComboBox.setSelectedItem(etudiant.getProgramme());
 
-			// Inscription des cours existants de l'étudiant
+			// Inscription des cours existants de l'ï¿½tudiant
 			for (Entry<Cours, JCheckBox> chck : coursChckbx.entrySet()) {				
 				chck.getValue().setSelected(etudiant.getCours().contains(chck.getKey()));
 			}
@@ -297,7 +309,52 @@ public class PanelModificationEtudiant extends JPanel implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		//Pas d'affichage de données, on update donc rien		
-	}	
+		//Pas d'affichage de donnï¿½es, on update donc rien		
+	}
 
+
+	public JTextField getPrenomTextField() {
+		return prenomTextField;
+	}
+
+
+	public JTextField getNomTextField() {
+		return nomTextField;
+	}
+
+
+	public JTextField getPseudoTextField() {
+		return pseudoTextField;
+	}
+
+
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+
+	public JRadioButton getManRadioButton() {
+		return manRadioButton;
+	}
+
+
+	public JRadioButton getWomanRadioButton() {
+		return womanRadioButton;
+	}
+
+
+	public JComboBox getProgrammeComboBox() {
+		return programmeComboBox;
+	}
+
+
+
+	public HashMap<Cours, JCheckBox> getCoursChckbx() {
+		return coursChckbx;
+	}
+
+
+
+	
 }
